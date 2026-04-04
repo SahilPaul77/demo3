@@ -208,7 +208,7 @@ const Navbar = () => {
             menu
           </p>
 
-          <nav className="flex flex-col gap-8 mt-40">
+          <nav className="flex flex-col gap-8 mt-28">
             {[
               { name: "About Us", to: "/aboutUs" },
               { name: "Services", to: "/services" },
