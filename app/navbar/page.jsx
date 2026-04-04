@@ -38,9 +38,7 @@ const Navbar = () => {
           <span className={`font-serif text-2xl tracking-tighter transition-colors duration-500 ${scrolled ? 'text-slate-950' : 'text-white'}`}>
             AURA <span className="font-light italic">DENTAL</span>
           </span>
-          <span className={`text-[8px] uppercase tracking-[0.5em] -mt-1 transition-colors duration-500 ${scrolled ? 'text-stone-500' : 'text-stone-400'}`}>
-            Aesthetic Institute
-          </span>
+        
         </Link>
 
         {/* Desktop Navigation */}
