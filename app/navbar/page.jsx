@@ -205,10 +205,10 @@ const Navbar = () => {
       >
         <div className="relative flex flex-col items-start justify-center h-full px-12 gap-y-10">
           <p className="text-[10px] uppercase tracking-[0.5em] text-stone-400">
-            menus
+            menusssrj
           </p>
 
-          <nav className="flex flex-col gap-8 mt-20">
+          <nav className="flex flex-col gap-8">
             {[
               { name: "About Us", to: "/aboutUs" },
               { name: "Services", to: "/services" },
