@@ -1,106 +1,114 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect for background change
+  // 👇 Detect scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Philosophy', href: '#philosophy' },
-    { name: 'Treatments', href: '#services' },
-    { name: 'The Clinic', href: '#clinic' },
-    { name: 'Gallery', href: '#gallery' },
-  ];
-
   return (
-    <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
-        scrolled 
-        ? 'bg-white/80 backdrop-blur-md border-stone-200 py-4 shadow-sm' 
-        : 'bg-transparent border-transparent py-8'
-      }`}
-    >
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        
-        {/* Logo / Brand Name */}
-        <Link href="/" className="group flex flex-col">
-          <span className={`font-serif text-2xl tracking-tighter transition-colors duration-500 ${scrolled ? 'text-slate-950' : 'text-white'}`}>
-            AURA <span className="font-light italic">DENTAL</span>
-          </span>
-        
+    <>
+      {/* --- NAVIGATION --- */}
+      <nav
+        className={`fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 transition-all duration-500 ${
+          scrolled
+            ? "py-5 md:py-6 backdrop-blur-md bg-white/70 border-b border-stone-100"
+            : "py-5 md:py-6 bg-transparent border-transparent"
+        }`}
+      >
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-lg md:text-xl font-serif tracking-tighter uppercase font-bold"
+        >
+          brightsmile
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-12">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href}
-              className={`text-[11px] uppercase tracking-[0.3em] font-medium hover:opacity-50 transition-all duration-300 ${
-                scrolled ? 'text-slate-900' : 'text-white'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          
-          <Link 
-            href="/contact" 
-            className={`px-8 py-3 text-[10px] uppercase tracking-[0.2em] transition-all duration-500 ${
-              scrolled 
-              ? 'bg-slate-950 text-white hover:bg-stone-800' 
-              : 'border border-white/30 text-white backdrop-blur-sm hover:bg-white hover:text-slate-950'
-            }`}
-          >
-            Inquire
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex gap-10 text-[12px] uppercase tracking-[0.1em] font-medium text-stone-600">
+          <Link href="/aboutUs" className="hover:text-stone-900 transition-colors">
+            About us
+          </Link>
+          <Link href="/services" className="hover:text-stone-900 transition-colors">
+            our Services
+          </Link>
+          <Link href="/gallery" className="hover:text-stone-900 transition-colors">
+            Gallery
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="lg:hidden flex flex-col gap-1.5 focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span className={`h-[1px] w-6 transition-all ${scrolled || isOpen ? 'bg-slate-950' : 'bg-white'} ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`h-[1px] w-6 transition-all ${scrolled || isOpen ? 'bg-slate-950' : 'bg-white'} ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`h-[1px] w-6 transition-all ${scrolled || isOpen ? 'bg-slate-950' : 'bg-white'} ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-stone-50 transition-all duration-700 flex flex-col justify-center items-center gap-10 lg:hidden ${
-        isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'
-      }`}>
-        {navLinks.map((link) => (
-          <Link 
-            key={link.name} 
-            href={link.href}
-            onClick={() => setIsOpen(false)}
-            className="text-3xl font-serif text-slate-950 hover:italic transition-all"
+        <div className="flex items-center gap-4">
+          <button
+            className="lg:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {link.name}
-          </Link>
-        ))}
-        <Link 
-          href="/contact"
-          onClick={() => setIsOpen(false)}
-          className="mt-4 px-12 py-4 border border-slate-950 text-slate-950 uppercase tracking-widest text-xs"
-        >
-          Book Consultation
-        </Link>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* --- Mobile Fullscreen Menu --- */}
+      <div
+        className={`fixed inset-0 bg-[#FDFDFB] z-40 flex flex-col transition-all duration-700 ease-in-out lg:hidden ${
+          isMenuOpen
+            ? "opacity-100 visibility-visible"
+            : "opacity-0 visibility-hidden pointer-events-none"
+        }`}
+      >
+        <div className="relative flex flex-col items-start justify-center h-full px-12 gap-y-10">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-stone-400">
+            menu
+          </p>
+
+          <nav className="flex flex-col gap-8">
+            {[
+              { name: "About Us", to: "/aboutUs" },
+              { name: "Services", to: "/services" },
+              { name: "Gallery", to: "/gallery" },
+              { name: "Location", to: "/googlemap" },
+            ].map((item, index) => (
+              <Link
+                key={item.name}
+                href={item.to}
+                onClick={() => setIsMenuOpen(false)}
+                className={`group flex items-baseline gap-4 transition-all duration-700 ${
+                  isMenuOpen
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-10 opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <span className="text-stone-400 text-xs font-light font-serif">
+                  0{index + 1}
+                </span>
+                <span className="text-3xl font-serif text-stone-900 group-hover:italic group-hover:translate-x-2 transition-all">
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </nav>
+
+          <div
+            className={`mt-12 pt-8 border-t border-stone-300 w-full transition-all duration-1000 delay-500 ${
+              isMenuOpen ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </div>
       </div>
-    </nav>
+    </>
   );
 };
 
