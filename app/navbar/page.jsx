@@ -29,11 +29,16 @@ const Navbar = () => {
         }`}
       >
         {/* Logo */}
-        <Link
-          href="/"
+        <Link href="/"
           className="text-lg md:text-xl font-serif tracking-tighter uppercase font-bold"
         >
-          brightsmile
+        <span
+  className={`font-serif text-2xl tracking-tighter transition-colors duration-500 ${
+    scrolled ? "text-slate-950" : "text-white"
+  }`}
+>
+  AURA <span className="font-light italic">DENTAL</span>
+</span>
         </Link>
 
         {/* Desktop Menu */}
