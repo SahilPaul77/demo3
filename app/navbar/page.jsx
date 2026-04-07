@@ -163,16 +163,34 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex gap-10 text-[12px] uppercase tracking-[0.1em] font-medium text-stone-600">
-          <Link href="/aboutUs" className="hover:text-stone-900 transition-colors">
-            About us
-          </Link>
-          <Link href="/services" className="hover:text-stone-900 transition-colors">
-            our Services
-          </Link>
-          <Link href="/gallery" className="hover:text-stone-900 transition-colors">
-            Gallery
-          </Link>
+        <div className="hidden lg:flex gap-10 text-[12px] uppercase tracking-[0.1em] font-sans text-white">
+          <Link href="/">
+          <span
+            className={`font-sans text-md transition-colors duration-500 ${
+              scrolled || isMenuOpen ? "text-slate-950" : "text-white"
+            }`}
+          >
+            ABOUT US
+          </span>
+        </Link>
+          <Link href="/">
+          <span
+            className={`font-sans text-md  transition-colors duration-500 ${
+              scrolled || isMenuOpen ? "text-slate-950" : "text-white"
+            }`}
+          >
+            OUR SERVICES
+          </span>
+        </Link>
+          <Link href="/">
+          <span
+            className={`font-sans text-md  transition-colors duration-500 ${
+              scrolled || isMenuOpen ? "text-slate-950" : "text-white"
+            }`}
+          >
+            GALLERY
+          </span>
+        </Link>
         </div>
 
         {/* Mobile Toggle */}
