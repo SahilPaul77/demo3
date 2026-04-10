@@ -1,7 +1,7 @@
 "use client"
 import Navbar from './navbar/page.jsx';
 import Hero from './hero/page.jsx';
-import WhyChooseUs from './whyChooseUs/page.jsx';
+import AboutUs from './aboutUs/page.jsx';
 
 
 const Home = ()=>{
@@ -9,7 +9,7 @@ const Home = ()=>{
       <>
          <Navbar />
    <Hero />
-   <WhyChooseUs />
+   <AboutUs />
       </>
      )
 }
